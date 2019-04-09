@@ -8,7 +8,6 @@ parser = ArgumentParser()
 parser.add_argument('--match', default=1,help='score for matching nucleotides (default = 1)')
 parser.add_argument('--missmatch', default=-1, help='score for missmatching nucleotides (default = -1)')
 parser.add_argument('--gap', default=-2, help='score for a gap in the alignment (default = -2)')
-parser.add_argument('--score',default=False, action='store_true', help='display alignment score')
 parser.add_argument('-o','--output', default="stdout", help="specify output file (standard: returns via stdout)")
 parser.add_argument('-i','--input', default="stdin", help="specify input file (standard: reads from stdin)")
 
@@ -71,8 +70,7 @@ for row in range(1,nrow,1):
     it1 +=1
     it2 = 0
 
-if args.score:
-    print("Result:" ,scoring_matrix[len(seq1)][len(seq2)])
+print(scoring_matrix[len(seq1)][len(seq2)], file=sys.stderr)
 
 col = len(path_matrix[0]) - 1
 row = len(path_matrix) - 1
